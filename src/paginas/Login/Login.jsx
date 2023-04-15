@@ -8,6 +8,7 @@ import { Card } from "../../componentes/Card/Card"
 import { Link } from "../../componentes/Link/Link"
 import { Tipografia } from "../../componentes/Tipografia/Tipografia"
 import { Logo } from "./Logo"
+import { useSessaoUsuarioContext } from "../../contexto/SessaoUsuario"
 
 const FormEstilizado = styled.form`
     border-bottom: 1px solid;
@@ -19,8 +20,11 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    const tentarEfetuarLogin = async (evento) => {
+    const { login } = useSessaoUsuarioContext()
 
+    const tentarEfetuarLogin = async (evento) => {
+        evento.preventDefault();
+        login(email, senha)
     }
 
     return (<Container>
